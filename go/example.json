@@ -1,0 +1,6 @@
+[
+  {"type": "buy", "unitCost": 10.00, "amount": 1000},
+  {"type": "sell", "unitCost": 30.00, "amount": 500},
+  {"type": "sell", "unitCost": 50.00, "amount": 420},
+  {"type": "sell", "unitCost": 60.00, "amount": 80}
+] 
