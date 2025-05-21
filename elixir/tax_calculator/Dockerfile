@@ -1,5 +1,5 @@
- # Stage 1: Build the Elixir application
-FROM hexpm/elixir:1.18.0-erlang-26.0.2-alpine-3.19.1 AS builder
+# Stage 1: Build the Elixir application
+FROM hexpm/elixir:1.18.0-erlang-26.0.2-alpine-3.19.4 AS builder
 
 # Set environment variables
 ENV MIX_ENV=prod
@@ -11,7 +11,9 @@ RUN apk add --no-cache build-base git
 WORKDIR /app
 COPY mix.exs mix.lock ./
 COPY lib lib
-COPY config config || true
+
+# Create config directory (will be empty if not exists in source)
+RUN mkdir -p config
 
 # Get dependencies
 RUN mix local.hex --force && \
@@ -22,11 +24,8 @@ RUN mix local.hex --force && \
 # Build and generate a release
 RUN mix escript.build
 
-# Stage 2: Create a minimal runtime image
-FROM alpine:3.19.1
-
-# Install runtime dependencies - only what's needed to run the application
-RUN apk add --no-cache ncurses-libs libstdc++ libgcc
+# Stage 2: Create a minimal runtime image with Erlang
+FROM erlang:26.0.2-alpine
 
 # Set working directory
 WORKDIR /app
