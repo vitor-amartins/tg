@@ -12,9 +12,32 @@ defmodule TaxCalculator.CLI do
       [json_file] ->
         process_file(json_file)
 
+      [] ->
+        # Read from stdin when no arguments are provided
+        process_stdin()
+
       _ ->
-        IO.puts("Uso: tax_calculator <arquivo.json>")
+        IO.puts("Uso: tax_calculator [arquivo.json]")
+        IO.puts("Se não for fornecido um arquivo, a entrada será lida do stdin.")
         System.halt(1)
+    end
+  end
+
+  @doc """
+  Processa a entrada recebida do stdin.
+  """
+  def process_stdin do
+    case IO.read(:eof) do
+      :eof ->
+        IO.puts("Erro: nenhuma entrada fornecida.")
+        System.halt(1)
+
+      {:error, reason} ->
+        IO.puts("Erro ao ler do stdin: #{reason}")
+        System.halt(1)
+
+      data ->
+        process_json(data)
     end
   end
 
@@ -46,4 +69,4 @@ defmodule TaxCalculator.CLI do
         System.halt(1)
     end
   end
-end 
+end
