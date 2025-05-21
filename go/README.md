@@ -69,4 +69,41 @@ A implementação é eficiente em termos de processamento e memória:
 
 - **Complexidade de Tempo**: O(n) onde n é o número de operações
 - **Complexidade de Espaço**: O(1), usando apenas estruturas de dados fixas
-- **Alocação de Memória**: Minimizada através do uso de referências e estruturas simples 
+- **Alocação de Memória**: Minimizada através do uso de referências e estruturas simples
+
+## Docker
+
+This repository includes a Docker setup for building and running the application.
+
+#### Building the Docker Image
+
+```bash
+docker build -t stocktax .
+```
+
+#### Running with Docker
+
+```bash
+cat example.json | docker run -i stocktax
+```
+
+#### Using Docker Compose
+
+```bash
+# Build and run
+docker-compose up --build
+
+# Run with input
+cat example.json | docker-compose run --rm stocktax
+```
+
+## Docker Image Optimization
+
+The Dockerfile uses a multistage build process to create a highly optimized image:
+
+1. First stage: Uses golang:alpine as a builder image
+2. Second stage: Uses scratch (empty base image) for the smallest possible final image
+3. The resulting image only contains the compiled Go binary
+4. Binary is statically linked and stripped of debug information
+
+This approach results in a Docker image that is typically less than 10MB in size. 

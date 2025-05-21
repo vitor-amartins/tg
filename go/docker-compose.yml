@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  stocktax:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    stdin_open: true
+    volumes:
+      - ./example.json:/example.json 
