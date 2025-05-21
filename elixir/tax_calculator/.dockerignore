@@ -1,0 +1,20 @@
+# Elixir build artifacts
+_build/
+deps/
+
+# Git related files
+.git/
+.gitignore
+
+# Misc
+.DS_Store
+*.ez
+*.beam
+tmp/
+*.md
+test/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore 

@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  tax_calculator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tax_calculator_elixir
+    stdin_open: true  # Keep stdin open to be able to pipe input
+    tty: true  # Allocate a pseudo-TTY 
