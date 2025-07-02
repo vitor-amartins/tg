@@ -29,7 +29,7 @@ defmodule TaxCalculator do
   def calculate_tax(operations) do
     operations
     |> process_operations()
-    |> Float.round(1)
+    |> Float.round(2)
   end
 
   defp process_operations(operations) do
@@ -76,30 +76,30 @@ defmodule TaxCalculator do
   defp process_sell(operation, state) do
     amount = operation["amount"]
     unit_cost = operation["unitCost"]
-    
+
     # Calcula o valor total da operação
     total_sale_value = amount * unit_cost
-    
+
     # Calcula o custo da operação baseado no preço médio
     cost_basis = amount * state.average_cost
-    
+
     # Calcula o resultado da operação (lucro ou prejuízo)
     profit_or_loss = total_sale_value - cost_basis
-    
+
     # Atualiza a quantidade de ações
     new_shares = state.shares - amount
 
     # Aplica as regras de tributação
     {new_accumulated_loss, new_tax} = calculate_tax_for_sale(
-      profit_or_loss, 
-      total_sale_value, 
-      state.accumulated_loss, 
+      profit_or_loss,
+      total_sale_value,
+      state.accumulated_loss,
       state.total_tax
     )
 
     # Atualiza o estado
     %{
-      state | 
+      state |
       shares: new_shares,
       accumulated_loss: new_accumulated_loss,
       total_tax: new_tax
@@ -131,17 +131,17 @@ defmodule TaxCalculator do
             new_tax = taxable_profit * 0.15
             {0, total_tax + new_tax}
           end
-          
+
         # Se a operação teve prejuízo
         profit_or_loss < 0 ->
           # Acumula o prejuízo para compensação futura
           {accumulated_loss + abs(profit_or_loss), total_tax}
-          
+
         # Caso contrário, a operação deu lucro e não há prejuízo acumulado
         profit_or_loss > 0 ->
           new_tax = profit_or_loss * 0.15
           {accumulated_loss, total_tax + new_tax}
-          
+
         # Caso especial: profit_or_loss == 0
         true ->
           {accumulated_loss, total_tax}
