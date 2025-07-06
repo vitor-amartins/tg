@@ -1,0 +1,102 @@
+[
+  {
+    "type": "buy",
+    "unitCost": 55.08,
+    "amount": 33
+  },
+  {
+    "type": "buy",
+    "unitCost": 173.41,
+    "amount": 956
+  },
+  {
+    "type": "buy",
+    "unitCost": 154.23,
+    "amount": 325
+  },
+  {
+    "type": "buy",
+    "unitCost": 199.36,
+    "amount": 139
+  },
+  {
+    "type": "sell",
+    "unitCost": 51.03,
+    "amount": 733
+  },
+  {
+    "type": "buy",
+    "unitCost": 118.66,
+    "amount": 506
+  },
+  {
+    "type": "buy",
+    "unitCost": 144.93,
+    "amount": 488
+  },
+  {
+    "type": "buy",
+    "unitCost": 170.81,
+    "amount": 247
+  },
+  {
+    "type": "buy",
+    "unitCost": 10.72,
+    "amount": 511
+  },
+  {
+    "type": "sell",
+    "unitCost": 74.86,
+    "amount": 2209
+  },
+  {
+    "type": "buy",
+    "unitCost": 15.52,
+    "amount": 283
+  },
+  {
+    "type": "buy",
+    "unitCost": 131.49,
+    "amount": 47
+  },
+  {
+    "type": "buy",
+    "unitCost": 67.12,
+    "amount": 474
+  },
+  {
+    "type": "buy",
+    "unitCost": 62.47,
+    "amount": 94
+  },
+  {
+    "type": "buy",
+    "unitCost": 40.68,
+    "amount": 126
+  },
+  {
+    "type": "sell",
+    "unitCost": 106.02,
+    "amount": 21
+  },
+  {
+    "type": "buy",
+    "unitCost": 86.81,
+    "amount": 742
+  },
+  {
+    "type": "sell",
+    "unitCost": 59.07,
+    "amount": 768
+  },
+  {
+    "type": "buy",
+    "unitCost": 24.81,
+    "amount": 715
+  },
+  {
+    "type": "sell",
+    "unitCost": 78.04,
+    "amount": 814
+  }
+]
